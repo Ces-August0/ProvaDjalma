@@ -1,0 +1,48 @@
+﻿@model ProvaDjalma.Models.Usuario
+
+@{
+    ViewBag.Title = "NovoUsuario";
+}
+
+<h2>Novo Vendedor</h2>
+
+@*<div id="my_camera"></div>
+
+
+    <div id="results">Your captured image will appear here...</div>*@
+
+
+@using (Html.BeginForm("SalvarUsuario", "Usuario", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+
+
+        @Html.Partial("_FrmUsuario")
+
+        <br />
+
+        <div class="form-group">
+            <br />
+            <div class="form-actions no-color">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
+    <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+    </script>*@

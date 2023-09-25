@@ -1,0 +1,30 @@
+﻿@model ProvaDjalma.Models.Marca
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Marca</h2>
+
+@using (Html.BeginForm("SalvarAlcoesMarca", "Marca", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        @* CARREGA DA VIEW PARCIAL *@
+
+        @Html.Partial("_FrmMarca")
+
+        <div class="form-group">
+            <br />
+            <div class="form-actions no-color">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}

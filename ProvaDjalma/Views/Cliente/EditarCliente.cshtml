@@ -1,0 +1,33 @@
+﻿@model ProvaDjalma.Models.Cliente
+
+@{
+    ViewBag.Title = "EditarCliente";
+}
+
+<h2>Editar Cliente</h2>
+
+
+@using (Html.BeginForm("SalvarAlteracoesCliente", "Cliente", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <h4>Cliente</h4>
+        <hr />
+
+
+        @Html.Partial("_FrmCliente")
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-dark" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

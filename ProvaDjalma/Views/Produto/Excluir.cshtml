@@ -1,0 +1,50 @@
+﻿@model ProvaDjalma.Models.Produto
+
+@{
+    ViewBag.Title = "Excluir Produto";
+}
+
+<h2>Excluir Produto</h2>
+
+<div>
+
+    <hr />
+
+    <div class="form-horizontal">
+        <h4>Produto</h4>
+        <hr />
+
+        <!-- Mostrar os detalhes do produto -->
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Marca)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Marca)
+            </dd>
+            <dt>
+                Preço
+            </dt>
+            <dd>
+                $ @Html.DisplayFor(model => model.Preco)
+            </dd>
+        </dl>
+
+    </div>
+
+    @using (Html.BeginForm("Excluir", "Produto", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,16 @@
+﻿@model ProvaDjalma.Models.Produto
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2>Visualizar Produto</h2>
+
+
+@Html.Partial("_FrmProduto", Model)
+
+<p>
+    <br />
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+</p>

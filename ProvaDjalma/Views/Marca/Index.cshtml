@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ProvaDjalma.Models.Marca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Cadastrar nova Marca", "NovaMarca", null, new { @class = "btn btn-primary" })
+</p>
+<br />
+<h2>Marcas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Detalhes", "Visualizar", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="2">Nenhuma marca disponível.</td>
+        </tr>
+    }
+</table>

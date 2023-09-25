@@ -1,0 +1,33 @@
+﻿@model ProvaDjalma.Models.Marca
+
+@{
+    ViewBag.Title = "NovaMarca";
+}
+
+<h2>Nova Marca</h2>
+
+@using (Html.BeginForm("SalvarMarca", "Marca", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+
+        <!-- Adicione os campos para a marca -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <br />
+            <div class="form-actions no-color">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}

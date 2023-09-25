@@ -1,0 +1,72 @@
+﻿@model ProvaDjalma.Models.Produto
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Produto"))
+{
+    <h2>Pesquisar Produto</h2>
+    <div class="row">
+        <div class="col-4">
+            @Html.LabelFor(model => model.Nome)
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control col-12" } })
+        </div>
+        <div class="col-4">
+            @{
+                var selectedValue = ViewData["Marca"] as string;
+            }
+            @Html.Label("Marca")
+            @Html.DropDownList("Marca", new SelectList(ViewBag.ListaMarcas, "Nome", "Nome"), "-- Selecione uma Marca --", new { @class = "form-control col-12" + (string.IsNullOrEmpty(selectedValue) ? "" : " selected") })
+        </div>
+    </div>
+    <br />
+    <input type="submit" value="Pesquisar" class="btn btn-outline-success" />
+}
+
+<br />
+
+<h2>Produtos</h2>
+<br />
+<p>
+    @Html.ActionLink("Incluir novo produto", "NovoProduto", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayName("Marca")
+        </th>
+        <th></th>
+    </tr>
+
+    @if (ViewBag.ListaProdutos != null && ViewBag.ListaProdutos is List<ProvaDjalma.Models.Produto>)
+    {
+        var listaProdutos = ViewBag.ListaProdutos as List<ProvaDjalma.Models.Produto>;
+
+        foreach (var item in listaProdutos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Detalhes", "Visualizar", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    }
+</table>

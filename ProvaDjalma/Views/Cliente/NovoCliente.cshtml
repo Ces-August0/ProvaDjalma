@@ -1,0 +1,29 @@
+﻿@model ProvaDjalma.Models.Cliente
+
+@{
+    ViewBag.Title = "Novo cliente";
+}
+
+<h2>Novo Cliente</h2>
+
+@using (Html.BeginForm("SalvarCliente", "Cliente", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+
+
+        @Html.Partial("_FrmCliente")
+
+        <br />
+
+        <div class="form-group">
+            <br />
+            <div class="form-actions no-color">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+

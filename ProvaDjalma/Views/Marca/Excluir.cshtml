@@ -1,0 +1,24 @@
+﻿@model ProvaDjalma.Models.Marca
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir Marca</h2>
+
+<div>
+    <hr />
+
+    @* CARREGA DA VIEW PARCIAL *@
+    @Html.Partial("_FrmMarca", Model)
+
+    @using (Html.BeginForm("Excluir", "Marca", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

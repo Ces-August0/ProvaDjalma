@@ -1,0 +1,20 @@
+﻿@model ProvaDjalma.Models.Cliente
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2>Visualizar</h2>
+
+
+@*CARREGA DA VIEW PARCIAL*@
+
+@Html.Partial("_FrmCliente")
+
+
+
+<p>
+    <br />
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+</p>

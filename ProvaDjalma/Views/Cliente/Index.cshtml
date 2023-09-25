@@ -1,0 +1,82 @@
+﻿@model ProvaDjalma.Models.Cliente
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Cliente"))
+{
+    <h2>Buscar Cliente</h2>
+    <div class="row">
+        <div class="col-4">
+            @Html.LabelFor(model => model.Nome)
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control col-12" } })
+        </div>
+        <div class="col-4">
+            @{
+                var selectedValue = ViewData["Vendedor"] as string;
+            }
+            @Html.LabelFor(model => model.Vendedor)
+            @Html.DropDownList("Vendedor", new SelectList(ViewBag.ListaVendedores, "Nome", "Nome"), "-- Selecione um Vendedor --", new { @class = "form-control col-12" + (string.IsNullOrEmpty(selectedValue) ? "" : " selected") })
+        </div>
+    </div>
+    <br />
+    <input type="submit" value="Pesquisar" class="btn btn-outline-success" />
+}
+
+<br />
+
+<h2>Clientes</h2>
+<br />
+<p>
+    @Html.ActionLink("Incluir novo cliente", "NovoCliente", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendedor)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (ViewBag.ListaClientes != null)
+    {
+        foreach (var item in ViewBag.ListaClientes)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.Nome)
+                </td>
+                <td>
+                    @Html.Raw(item.Telefone)
+                </td>
+                <td>
+                    @Html.Raw(item.EMail)
+                </td>
+                <td>
+                    @Html.Raw(item.DataNasc)
+                </td>
+                <td>
+                    @Html.Raw(item.Vendedor)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Detalhes", "Visualizar", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    }
+</table>
